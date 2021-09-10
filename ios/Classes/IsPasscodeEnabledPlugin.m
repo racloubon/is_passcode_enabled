@@ -21,10 +21,10 @@
    if (error != nil) {
        // do something with the error
    } else if (passcodeEnabled) {
-    NSLog("coucou its false");
+    NSLog(@"coucou its false");
     result(true);
    } else {
-      NSLog("coucou its false");
+      NSLog(@"coucou its false");
       result(false);
    }
   } else {
