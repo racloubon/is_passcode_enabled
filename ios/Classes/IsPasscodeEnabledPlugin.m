@@ -1,5 +1,5 @@
 #import "IsPasscodeEnabledPlugin.h"
-#import <LocalAuthentication/LocalAuthentication.h>
+#import <LocalAuthentication/LocalAuthentication.h> as LAContext
 
 @implementation IsPasscodeEnabledPlugin
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
@@ -22,11 +22,10 @@
        // do something with the error
    } else if (passcodeEnabled) {
       // it's true!
-      // I have no idea if this will work
-         result([@"iOS " "true");
+  //what do I do?
    } else {
        // it's false
-        result([@"iOS " "false");
+       
    }
   } else {
     result(FlutterMethodNotImplemented);
