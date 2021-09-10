@@ -1,5 +1,5 @@
 #import "IsPasscodeEnabledPlugin.h"
-#import <LocalAuthentication/LocalAuthentication.h> as LAContext
+#import <LocalAuthentication/LocalAuthentication.h>
 
 @implementation IsPasscodeEnabledPlugin
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
