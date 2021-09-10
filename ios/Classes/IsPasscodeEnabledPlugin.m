@@ -21,11 +21,11 @@
    if (error != nil) {
        // do something with the error
    } else if (passcodeEnabled) {
-      // it's true!
-  //what do I do?
+    NSLog("coucou its false");
+    result(true);
    } else {
-       // it's false
-       
+      NSLog("coucou its false");
+      result(false);
    }
   } else {
     result(FlutterMethodNotImplemented);
