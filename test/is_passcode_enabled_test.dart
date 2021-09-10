@@ -17,7 +17,7 @@ void main() {
     channel.setMockMethodCallHandler(null);
   });
 
-  test('getPlatformVersion', () async {
-    expect(await IsPasscodeEnabled.platformVersion, '42');
+  test('isPasscodeEnabled', () async {
+    expect(await IsPasscodeEnabled.isPasscodeEnabled, '42');
   });
 }

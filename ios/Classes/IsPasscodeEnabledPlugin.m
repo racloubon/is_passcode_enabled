@@ -11,29 +11,21 @@
 }
 
 - (void)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {
-  if ([@"getPlatformVersion" isEqualToString:call.method]) {
-    result([@"iOS " stringByAppendingString:[[UIDevice currentDevice] systemVersion]]);
-  } else if ([@"isPasscodeEnabled" isEqualToString:call.method]) {
+  if ([@"isPasscodeEnabled" isEqualToString:call.method]) {
    LAContext *context = [LAContext new];
    NSError *error;
    BOOL passcodeEnabled = [context canEvaluatePolicy:LAPolicyDeviceOwnerAuthentication error:&error];
-
-     if (error != nil) {
-       // do something with the error
+   if (error != nil) {
+       // TO DO: handle error
    } else if (passcodeEnabled) {
-    NSLog(@"coucou its true");
     result([NSNumber numberWithBool:YES]);
    } else {
-      NSLog(@"coucou its false");
-      result([NSNumber numberWithBool:NO]);
+    result([NSNumber numberWithBool:NO]);
    }
   } else {
     result(FlutterMethodNotImplemented);
   }
 }
-
-
-
 
 
 @end
