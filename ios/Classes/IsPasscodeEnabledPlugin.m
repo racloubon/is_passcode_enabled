@@ -21,9 +21,12 @@
    if (error != nil) {
        // do something with the error
    } else if (passcodeEnabled) {
-      return true;
+      // it's true!
+      // I have no idea if this will work
+         result([@"iOS " "true");
    } else {
-       return false;
+       // it's false
+        result([@"iOS " "false");
    }
   } else {
     result(FlutterMethodNotImplemented);
