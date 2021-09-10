@@ -22,10 +22,10 @@
        // do something with the error
    } else if (passcodeEnabled) {
     NSLog(@"coucou its false");
-    result([true]);
+    result(YES);
    } else {
       NSLog(@"coucou its false");
-      result([false]);
+      result(NO);
    }
   } else {
     result(FlutterMethodNotImplemented);
