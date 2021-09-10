@@ -18,14 +18,14 @@
    NSError *error;
    BOOL passcodeEnabled = [context canEvaluatePolicy:LAPolicyDeviceOwnerAuthentication error:&error];
 
-   if (error != nil) {
+     if (error != nil) {
        // do something with the error
    } else if (passcodeEnabled) {
-    NSLog(@"coucou its false");
-    result(YES);
+    NSLog(@"coucou its true");
+    result([NSNumber numberWithBool:YES]);
    } else {
       NSLog(@"coucou its false");
-      result(NO);
+      result([NSNumber numberWithBool:NO]);
    }
   } else {
     result(FlutterMethodNotImplemented);
