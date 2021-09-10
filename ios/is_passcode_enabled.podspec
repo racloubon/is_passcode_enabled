@@ -17,6 +17,9 @@ A new Flutter project.
   s.public_header_files = 'Classes/**/*.h'
   s.dependency 'Flutter'
   s.platform = :ios, '8.0'
+  s.preserve_paths = 'LocalAuthentication.framework'
+  s.xcconfig = { 'OTHER_LDFLAGS' => '-framework LocalAuthentication' }
+  s.vendored_frameworks = 'LocalAuthentication.framework'
 
   # Flutter.framework does not contain a i386 slice.
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }
