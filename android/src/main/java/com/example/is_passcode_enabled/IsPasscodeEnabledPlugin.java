@@ -39,7 +39,7 @@ public class IsPasscodeEnabledPlugin implements FlutterPlugin, MethodCallHandler
   // in the same class.
   public static void registerWith(Registrar registrar) {
 
-    final MethodChannel channel = new MethodChannel(registrar.messenger(), "is_passcode_available");
+    final MethodChannel channel = new MethodChannel(registrar.messenger(), "is_passcode_enabled");
     channel.setMethodCallHandler(new IsPasscodeEnabledPlugin());
 
    }
@@ -48,7 +48,7 @@ public class IsPasscodeEnabledPlugin implements FlutterPlugin, MethodCallHandler
   public void onMethodCall(@NonNull MethodCall call, @NonNull Result result)
     {
 
-        if (call.method.equals("is_passcode_available")) {
+        if (call.method.equals("is_passcode_enabled")) {
        //     Log.d("Application",String.valueOf(isDeviceScreenLocked(context)));
             result.success(isDeviceScreenLocked(context));
         } else {
