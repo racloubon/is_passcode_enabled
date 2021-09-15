@@ -16,8 +16,8 @@ import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
 import io.flutter.plugin.common.PluginRegistry.Registrar;
 
-/** FlutterLockscreenCheckPlugin */
-public class FlutterLockscreenCheckPlugin implements FlutterPlugin, MethodCallHandler {
+/** IsPasscodeEnabledPlugin */
+public class IsPasscodeEnabledPlugin implements FlutterPlugin, MethodCallHandler {
      private static Context context=null;
 
   @Override
@@ -25,7 +25,7 @@ public class FlutterLockscreenCheckPlugin implements FlutterPlugin, MethodCallHa
     
     final MethodChannel channel = new MethodChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "flutter_lockscreen_check");
     context=flutterPluginBinding.getApplicationContext();
-    channel.setMethodCallHandler(new FlutterLockscreenCheckPlugin());
+    channel.setMethodCallHandler(new IsPasscodeEnabledPlugin());
   }
 
   // This static function is optional and equivalent to onAttachedToEngine. It supports the old
@@ -40,7 +40,7 @@ public class FlutterLockscreenCheckPlugin implements FlutterPlugin, MethodCallHa
   public static void registerWith(Registrar registrar) {
 
     final MethodChannel channel = new MethodChannel(registrar.messenger(), "flutter_lockscreen_check");
-    channel.setMethodCallHandler(new FlutterLockscreenCheckPlugin());
+    channel.setMethodCallHandler(new IsPasscodeEnabledPlugin());
 
    }
 
