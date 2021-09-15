@@ -23,7 +23,7 @@ public class IsPasscodeEnabledPlugin implements FlutterPlugin, MethodCallHandler
   @Override
   public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
     
-    final MethodChannel channel = new MethodChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "flutter_lockscreen_check");
+    final MethodChannel channel = new MethodChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "is_passcode_enabled");
     context=flutterPluginBinding.getApplicationContext();
     channel.setMethodCallHandler(new IsPasscodeEnabledPlugin());
   }
@@ -39,7 +39,7 @@ public class IsPasscodeEnabledPlugin implements FlutterPlugin, MethodCallHandler
   // in the same class.
   public static void registerWith(Registrar registrar) {
 
-    final MethodChannel channel = new MethodChannel(registrar.messenger(), "flutter_lockscreen_check");
+    final MethodChannel channel = new MethodChannel(registrar.messenger(), "is_passcode_available");
     channel.setMethodCallHandler(new IsPasscodeEnabledPlugin());
 
    }
@@ -48,7 +48,7 @@ public class IsPasscodeEnabledPlugin implements FlutterPlugin, MethodCallHandler
   public void onMethodCall(@NonNull MethodCall call, @NonNull Result result)
     {
 
-        if (call.method.equals("checkLockScreenAvailable")) {
+        if (call.method.equals("is_passcode_available")) {
        //     Log.d("Application",String.valueOf(isDeviceScreenLocked(context)));
             result.success(isDeviceScreenLocked(context));
         } else {
