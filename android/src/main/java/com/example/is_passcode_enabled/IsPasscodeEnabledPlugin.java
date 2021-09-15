@@ -1,7 +1,14 @@
 package com.example.is_passcode_enabled;
 
-import androidx.annotation.NonNull;
+import android.annotation.TargetApi;
+import android.app.KeyguardManager;
+import android.content.ContentResolver;
+import android.content.Context;
+import android.os.Build;
+import android.provider.Settings;
+import android.util.Log;
 
+import androidx.annotation.NonNull;
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
@@ -9,39 +16,50 @@ import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
 import io.flutter.plugin.common.PluginRegistry.Registrar;
 
-/** IsPasscodeEnabledPlugin */
-public class IsPasscodeEnabledPlugin implements FlutterPlugin, MethodCallHandler {
-  /// The MethodChannel that will the communication between Flutter and native Android
-  ///
-  /// This local reference serves to register the plugin with the Flutter Engine and unregister it
-  /// when the Flutter Engine is detached from the Activity
-  private MethodChannel channel;
-  private static Context context=null;
+/** FlutterLockscreenCheckPlugin */
+public class FlutterLockscreenCheckPlugin implements FlutterPlugin, MethodCallHandler {
+     private static Context context=null;
 
   @Override
   public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
-    channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "is_passcode_enabled");
-    channel.setMethodCallHandler(this);
+    
+    final MethodChannel channel = new MethodChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "flutter_lockscreen_check");
     context=flutterPluginBinding.getApplicationContext();
+    channel.setMethodCallHandler(new FlutterLockscreenCheckPlugin());
   }
+
+  // This static function is optional and equivalent to onAttachedToEngine. It supports the old
+  // pre-Flutter-1.12 Android projects. You are encouraged to continue supporting
+  // plugin registration via this function while apps migrate to use the new Android APIs
+  // post-flutter-1.12 via https://flutter.dev/go/android-project-migration.
+  //
+  // It is encouraged to share logic between onAttachedToEngine and registerWith to keep
+  // them functionally equivalent. Only one of onAttachedToEngine or registerWith will be called
+  // depending on the user's project. onAttachedToEngine or registerWith must both be defined
+  // in the same class.
+  public static void registerWith(Registrar registrar) {
+
+    final MethodChannel channel = new MethodChannel(registrar.messenger(), "flutter_lockscreen_check");
+    channel.setMethodCallHandler(new FlutterLockscreenCheckPlugin());
+
+   }
 
   @Override
-  public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
-    if (call.method.equals("isPasscodeEnabled")) {
-      result.success(isDeviceScreenLocked(context));
-    } else {
-      result.notImplemented();
-    }
-  }
+  public void onMethodCall(@NonNull MethodCall call, @NonNull Result result)
+    {
 
+        if (call.method.equals("checkLockScreenAvailable")) {
+       //     Log.d("Application",String.valueOf(isDeviceScreenLocked(context)));
+            result.success(isDeviceScreenLocked(context));
+        } else {
+            result.error("","Not Method Found","Could Not Get Platform");
+        }
+    }
   @Override
   public void onDetachedFromEngine(@NonNull FlutterPluginBinding binding) {
-    channel.setMethodCallHandler(null);
   }
-}
 
-
-private static boolean isDeviceScreenLocked(Context appCon) {
+  private static boolean isDeviceScreenLocked(Context appCon) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
       return isDeviceLocked(appCon);
     } else {
