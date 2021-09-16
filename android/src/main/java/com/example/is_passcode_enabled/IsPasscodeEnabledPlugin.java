@@ -49,7 +49,6 @@ public class IsPasscodeEnabledPlugin implements FlutterPlugin, MethodCallHandler
     {
 
         if (call.method.equals("is_passcode_enabled")) {
-       //     Log.d("Application",String.valueOf(isDeviceScreenLocked(context)));
             result.success(isDeviceScreenLocked(context));
         } else {
             result.error("","Not Method Found","Could Not Get Platform");

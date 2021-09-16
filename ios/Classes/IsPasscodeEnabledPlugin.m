@@ -16,7 +16,9 @@
    NSError *error;
    BOOL passcodeEnabled = [context canEvaluatePolicy:LAPolicyDeviceOwnerAuthentication error:&error];
    if (error != nil) {
-       // TO DO: handle error
+           result(FlutterError(code: "UNAVAILABLE",
+                        message: "Local authentication context is unavailable",
+                        details: nil))
    } else if (passcodeEnabled) {
     result([NSNumber numberWithBool:YES]);
    } else {
